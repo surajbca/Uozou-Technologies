@@ -1,17 +1,297 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Abhishek Kumar">
+    <script src="https://kit.fontawesome.com/f0df9833ff.js" crossorigin="anonymous"></script>
+
+
+    <script defer src="http://localhost:7500/socket.io/socket.io.js"></script>
+
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <title>Uozou</title>
+    <link rel="stylesheet" href="./Home.css" id="stylesheet" />
 </head>
 
 <body>
-    <div class="container">
-        <h1 style="text-align: center;">WELCOM TO MY HOMEPAGE</h1>
-        <h2 id="username"></h2>
-        <img id="profile">
+    <section class="contianer">
+        <div class="location-section">
+            <h1 id="logo">Uozou</h1>
+            <div class="location-container">
+                <h5 class="location-popup"><i class="fa-solid fa-location-dot"></i>
+                    <p id="upperAdd">Ghaziabad 201206</p>
+                </h5>
+            </div>
+        </div>
+        <div id="popupContainer" class="popup">
+            <div class="pincode-container">
+                <span id="backBtn" class="back" onclick="back()"><i class="fa-solid fa-xmark"></i></span>
+                <br>
+                <form action="" id="inputForm">
+                    <input type="text" id="pincodeInput" placeholder="Enter pincode" maxlength="6" minlength="6">
+                    <button onclick="searchPincode()" type="button">Apply</button>
+                </form>
+                <p id="cityInfo"></p>
+            </div>
+            <div class="popupContent">
+                <span id="closePopup" class="close"><i class="fa-solid fa-xmark"></i></span>
+                <br>
+
+                <h4 class="get-pincode"><i class="fa-solid fa-location-dot"></i>Enter a pincode</h4>
+
+                <h4 class="geoBtn" onclick="getCurrentLocation()"><i class="fa-solid fa-location-crosshairs"></i>Detect
+                    My
+                    Location</h4>
+                <p class="districtPincode"></p>
+            </div>
+        </div>
+        <nav class="navbar">
+            <ul class="list">
+                <li><a href="">Home</a></li>
+                <li><a href="">About us</a></li>
+                <li><a href="">Contact us</a></li>
+                <li><a href="">Services</a></li>
+                <li><a href="./videoCall.html">Video Call</a></li>
+                <li><a href="">More</a></li>
+            </ul>
+
+            <div style="margin-left: 1rem;">
+                <!-- <select id="mode" name="cars">
+              <option id="darkMode" value="dark">Dark</option>
+              <option id="lightMode" value="light">Light</option>
+            </select> -->
+                <button id="darkModeToggle">Light</button>
+            </div>
+        </nav>
+    </section>
+    <hr />
+    <section id="home-section">
+        <div id="home">
+
+            <div class="hero-content">
+                <p class="hero-heading-1">Welcome to our website</p>
+                <br />
+                <h1 class="hero-heading-2">Uozou Technologies</h1>
+                <br />
+                <p class="hero-heading-3">We made lots of <span class="type"></span></p>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div id="about" class="container">
+            <div class="about-heading-box">
+                <hr style="margin-top: 1rem; width: 30%;">
+                <h2 class="about-heading">ABOUT <span>US</span></2>
+                    <h3 class="about-heading-2">who We are</h3>
+            </div>
+            <div class="left-about">
+                <p class="left-about-heading">Hi We are <span>Uozou Technologies</span></p>
+                <br>
+                <p class="left-about-para">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi quas neque,
+                    eveniet
+                    deserunt, illum suscipit consectetur inventore vel veniam aliquid dicta! Dolorem nulla sed, quas
+                    earum
+                    voluptas maxime. Commodi id nihil non sint? Quis eos dolor saepe! Deleniti repellat, molestias sed
+                    architecto
+                    accusantium est culpa aliquam? Vitae consequatur mollitia repellendus voluptates ullam minima et
+                    dicta
+                    neque,
+                    numquam velit, id veritatis.</p>
+                <br>
+
+                <div class="about-social-link-box">
+                    <a href="" target="_blank" rel="nofollow" class="about-social-link"><i
+                            class="fa-brands fa-facebook-square"></i></a>
+                    <a href="" target="_blank" rel="nofollow" class="about-social-link"><i
+                            class="fa-brands fa-instagram-square"></i></a>
+                    <a href="" target="_blank" rel="nofollow" class="about-social-link"><i
+                            class="fa-brands fa-linkedin"></i></a>
+                    <a href="" target="_blank" rel="nofollow" class="about-social-link"><i
+                            class="fa-brands fa-twitter-square"></i></a>
+
+                </div>
+            </div>
+            <div class="right-about">
+                <img src="./photos/hero.webp" alt="potfolio about" class="about-img">
+            </div>
+        </div>
+    </section>
+
+
+    <Section class="categories-section">
+        <h1>Categories</h1>
+        <div class="categories">
+            <div class="category-card">
+                <a href=""><img
+                        src="https://images.unsplash.com/photo-1698934688661-522c99f4c98f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/500x300"
+                        alt="">
+                    <h3>Electronics</h3>
+                </a>
+
+            </div>
+            <div class="category-card">
+                <a href=""><img
+                        src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1372&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="">
+                    <h3>Fashion</h3>
+                </a>
+
+            </div>
+            <div class="category-card">
+                <a href=""><img
+                        src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="">
+                    <h3>Groceries</h3>
+                </a>
+
+            </div>
+
+        </div>
+    </Section>
+
+
+    <Section>
+        <div class="cards">
+            <h1>Products</h1>
+            <div class="product-container">
+                <div class="product">
+                    <img src="./photos/mackbook.webp" alt="Product 1">
+                    <div class="product-details">
+                        <h2>Mackbook Pro</h2>
+                        <p>Description of Product 1 goes here.</p>
+                        <p>Price: $1990</p>
+                    </div>
+                    <button class="cart-btn">Add to Cart</button>
+                </div>
+
+                <div class="product">
+                    <img src="./photos/iphone.webp" alt="Product 2">
+                    <div class="product-details">
+                        <h2>Iphone 15 Pro Plus</h2>
+                        <p>Description of Product 2 goes here.</p>
+                        <p>Price: $2225</p>
+                    </div>
+                    <button class="cart-btn">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./photos/pendrive.webp" alt="Product 2">
+                    <div class="product-details">
+                        <h2>Sandisk Pendrive</h2>
+                        <p>Description of Product 2 goes here.</p>
+                        <p>Price: $10</p>
+                    </div>
+                    <button class="cart-btn">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./photos/redbull.webp" alt="Product 2">
+                    <div class="product-details">
+                        <h2>Redbull</h2>
+                        <p>Description of Product 2 goes here.</p>
+                        <p>Price: $2</p>
+                    </div>
+                    <button class="cart-btn">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./photos/tshirt.webp" alt="Product 2">
+                    <div class="product-details">
+                        <h2>Black T-Shirt</h2>
+                        <p>Description of Product 2 goes here.</p>
+                        <p>Price: $8</p>
+                    </div>
+                    <button class="cart-btn">Add to Cart</button>
+                </div>
+            </div>
+    </Section>
+
+    <section class="footer-section">
+        <hr />
+        <footer class="footer">
+            <div class="products">
+                <h4>PRODUCT</h4>
+                <ul>
+                    <li><a href="">Templates</a></li>
+                    <li><a href="">Explore</a></li>
+                    <li><a href="">Features</a></li>
+                    <li><a href="">Domains</a></li>
+                </ul>
+            </div>
+            <div class="company">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="">About Uozou</a></li>
+                    <li><a href="">Investor Relations</a></li>
+                    <li><a href="">Terms of Use</a></li>
+                    <li><a href="">Updates & Releases</a></li>
+                </ul>
+            </div>
+            <div class="support">
+                <h4>SUPPORT</h4>
+                <ul>
+                    <li><a href="">Support Center</a></li>
+                    <li><a href="">Getting Started Guide</a></li>
+                    <li><a href="">Uozou Learn</a></li>
+                    <li><a href="">Status Page</a></li>
+                </ul>
+            </div>
+            <div class="footer-about">
+                <h1>Uozou</h1>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero cum
+                    omnis error maxime consectetur expedita itaque culpa veritatis
+                    nostrum dolorum!
+                </p>
+                <p class="copy-rights">© 2024 All Rights Reserved - Uozou Technologies </p>
+            </div>
+        </footer>
+        <div>
+            <button id="scrollToTopBtn"><i class="fa-solid fa-angle-up"></i></button>
+        </div>
+
+    </section>
+
+
+    <input type="checkbox" id="showBtn">
+    <label id="showBtn" for="showBtn"><i class="fa-solid fa-message"></i></label>
+
+    <div class="chat">
+        <div id="massage-heading">
+            <h4 id="message">Let's Chat - Online</h4>
+        </div>
+        <!-- <p class="agentPera" style="">Please fill form below to start chatting with the next available agent.</p>
+          <form action="" class="chatbox" id="chatBoxForm">
+          <input type="text" class="message-input nameInput" placeholder="*Name" required>
+          <input type="Email" class="message-input" placeholder="*Email" required>
+          <input type="name" class="message-input" placeholder="*Phone" required>
+          <button class="startBtn" onclick="hideForm()"><i class="fa-solid fa-location-arrow"></i> Start Chat</button>
+        </form> -->
+
+        <div class="liveChatContainer">
+            <div class="liveChat">
+                <!-- <div class="right message">Abhi: Hey how are you?</div>
+          <div class="left message">Bot: I am good. How about you?</div> -->
+            </div>
+
+            <div class="send">
+                <form action="#" id="send-container">
+                    <input type="text" id="messageInp" name="messageInp" placeholder="Type a message...">
+                    <!-- <div class="file-input-container"> -->
+                    <label for="fileInput" class="file-input-label">
+                        <i class="fas fa-paperclip"></i>
+                    </label>
+                    <input type="file" id="fileInput" class="file-input" name="fileInput">
+                    <!-- </div> -->
+                    <button class="btn" type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
     </div>
+
+
+    <script defer src="./Home.js"></script>
+
 </body>
 
 </html>
