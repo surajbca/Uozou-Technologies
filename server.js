@@ -8,7 +8,7 @@ const port = 3001;
 app.use(cors());
 
 const connection = mysql.createConnection({
-  host: "uozoutechnologiesdb.cv06ocueop3u.eu-north-1.rds.amazonaws.com",
+  host: "uozoudb.c38kgi0ugm2b.ap-south-1.rds.amazonaws.com",
   user: "root",
   password: "",
   database: "UozouTechnologiesdb",
